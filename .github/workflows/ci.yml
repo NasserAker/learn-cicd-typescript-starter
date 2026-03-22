@@ -32,5 +32,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps: 
-      - name: check the code
+      - name: Check out code
+        uses: actions/checkout@v4        # ← this is the missing one
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check formatting
         run: npm run format:check
